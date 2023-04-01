@@ -1,0 +1,111 @@
+
+Apache Sqoop:
+=============
+is a tool designed for efficiently trasfering bulk data between hadoop and RDBMS vice versa.
+
+
+==============================================================
+1.To Import data from My sql table data to hdfs default path :
+==============================================================
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table order \
+--fields-terminated by ',' ;
+
+==============================================================
+2.To Import data from my sql table data to hdfs specific path :
+===============================================================
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table order \
+--fields-terminated by ','
+--target-dir 'user/data/orders' ;
+
+============================================================
+3. import my sql table filtered data to hdfs specific path :
+============================================================
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table orders \
+--where 'order_id<100' \
+--fields-terminated by ',' \
+--target-dir 'user/data/orders';
+
+================================================================
+Mappers : For Every mapper one file will be created i.e (part-m-00000 files) ,default mappers are 4.
+manually set number of mappers  --num-mappers (or) -m
+
+==================================
+4. controlling parallelism in sqoop:
+==================================
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table orders \
+--where 'order_id<100' \
+--fields-terminated by ',' \
+--target-dir 'user/data/orders' \
+--delete-target-dir \
+--num-mappers 2 ;
+  (or)
+-m 2;
+
+
+=====================================================
+5. import my sql table specific column data to hdfs :
+=====================================================
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table orders \
+--columns 'order_id,order_date' \
+--fields-terminated by ',' \
+--target-dir 'user/data/orders';
+
+=====================================================
+6.overwrite existing data while sqoop import:
+=====================================================
+
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table orders \
+--fields-terminated by ',' \
+--target-dir 'user/data/orders' \
+--delete-target-dir ;
+
+=====================================================
+7.data append while sqoop import:
+=====================================================
+
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table orders \
+--fields-terminated by ',' \
+--target-dir 'user/data/orders' \
+--append ;
+
+
+===================================================
+8.import mysql table (No primary key) data to hdfs:
+===================================================
+
+sqoop import \
+--connect jdbc:mysql://localhost/retail_db \
+--username root \
+--password root \
+--table orders_noPk \
+--fields-terminated by ',' \
+--target-dir 'user/data/orders' \
+--split-by order_id ;
