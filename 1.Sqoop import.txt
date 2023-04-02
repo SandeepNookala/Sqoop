@@ -109,3 +109,6 @@ sqoop import \
 --fields-terminated by ',' \
 --target-dir 'user/data/orders' \
 --split-by order_id ;
+
+
+

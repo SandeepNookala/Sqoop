@@ -1,0 +1,33 @@
+
+
+1.creating sqoop job:
+---------------------
+sqoop job --create sqoop_delta_job -- import \
+--option-file 'D:/Big_Data/Sqoop/code/sqoop-connet-import'
+--table order_delta \
+--target-dir 'user/data/order' \
+--fields-terminated by ',' \
+--as-textfile \
+--check-column order \
+--incremental append \
+-m 1;
+
+
+2. list of sqoop job:
+======================
+
+sqoop job --list
+
+2. execute sqoop job:
+======================
+
+sqoop job --exec sqoop_delta_job 
+
+
+3.delete sqoop job:
+====================
+
+
+4. show sqoop paramenters:
+==========================
+sqoop job --show sqoop_delta_job

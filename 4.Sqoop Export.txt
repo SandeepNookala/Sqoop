@@ -1,0 +1,37 @@
+
+
+1.export hdfs data to mysql table:
+==================================
+sqoop export
+--connect jdbc:mysql://localhost/sqoop_export \
+--username root \
+--password root \
+--export-dir 'user/data/order_export' \
+--table order_export \
+--input-fields-terminated by ',';
+
+2.export hdfs specific column data to mysql table:
+==================================================
+
+sqoop export
+--connect jdbc:mysql://localhost/sqoop_export \
+--username root \
+--password root \
+--export-dir 'user/data/order_export' \
+--table order_export \
+--columns 'order_id ,order_customer'  \
+--input-fields-terminated by ','
+
+3.delta load /incremental load:
+===============================
+
+sqoop export
+--connect jdbc:mysql://localhost/sqoop_export \
+--username root \
+--password root \
+--export-dir 'user/data/order_export' \
+--update-key 'order_id' \
+--update-mode allowinsert \
+--table order_export \
+--columns 'order_id,order_customer' \
+--input-fields-terminated by ',' ;
