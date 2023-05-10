@@ -1,0 +1,16 @@
+
+write a optimized sqoop job for import 1 million records from a database to hdfs
+
+sqoop import \
+--option-file '' \
+--table 'customers' \
+--target-dir /user/cloudera/data/ \ 
+--delete-target-dir  \
+--num-mapper 10 \
+--fetch-size 10000 \
+--compression-codec \
+--as-textfile \
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' \
+
+

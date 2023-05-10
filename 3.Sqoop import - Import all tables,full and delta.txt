@@ -7,7 +7,7 @@ sqoop
 =========================================
 
 sqoop import-all-table \
---connect jhdbc:mysql://localhost/retail_db \
+--connect jdbc:mysql://localhost/retail_db \
 --username root \
 --password root \
 --warhouse-dir 'user/data/sq_tables/' \
@@ -17,7 +17,7 @@ sqoop import-all-table \
 2.Exclude tables from RDBMS to sqoop:
 =====================================
 sqoop import-all-table \
---connect jhdbc:mysql://localhost/retail_db \
+--connect jdbc:mysql://localhost/retail_db \
 --username root \
 --password root \
 --exclude-table 'orders,customers' \
@@ -45,23 +45,26 @@ sqoop
 
 load historical data:(only once)
 ---------------------
-sqoop 
---option-file D:/Big_Data/Sqoop/code/sqoop-connect
---table order_delta \
---target-dir 'user/data/order_delta' \
---as-textfile \
+
+sqoop import \
+--option-file D:/Big_Data/Sqoop/code/sqoop-connect \
+--table order \
+--target-dir /user/coludera/retail/ \
 --delete-target-dir \
--m 1;
+--fields-terminated-by ',' \
+--lines-terminated-by ',' \
+-m 3 ;
 
 to get updated records:(every day)
 ----------------------------
-sqoop 
---option-file D:/Big_Data/Sqoop/code/sqoop-connect
---table order_delta \
---target-dir 'user/data/order_delta' \
---check-column order_date \
+
+sqoop import \
+--option-file D:/Big_Data/Sqoop/code/sqoop-connect \
+--table order \
+--target-dir /user/coludera/retail/ \
 --incremental append \
---last-value "2022-05-19" \
--m 1;
-
-
+--check-column order_id \
+--last-value '2023-05-01' \
+--fields-terminated-by ',' \
+--lines-terminated-by ',' \
+-m 3 ;

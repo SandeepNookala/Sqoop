@@ -3,112 +3,118 @@ Apache Sqoop:
 =============
 is a tool designed for efficiently trasfering bulk data between hadoop and RDBMS vice versa.
 
+==============================================================
+1.To Import data from My sql table data to default hdfs path :
+==============================================================
 
-==============================================================
-1.To Import data from My sql table data to hdfs default path :
-==============================================================
 sqoop import \
 --connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
+--username cloudera \
+--password cloudera \
 --table order \
---fields-terminated by ',' ;
+--fields-terminated-by ',' \
+--lines-terminated-by '\n';
 
 ==============================================================
 2.To Import data from my sql table data to hdfs specific path :
 ===============================================================
+
 sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
 --table order \
---fields-terminated by ','
---target-dir 'user/data/orders' ;
+--target-dir '/user/coludera/home/'
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' ;
 
 ============================================================
 3. import my sql table filtered data to hdfs specific path :
 ============================================================
+
 sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
---table orders \
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order \
 --where 'order_id<100' \
---fields-terminated by ',' \
---target-dir 'user/data/orders';
+--target-dir '/user/coludera/home/'
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' ;
 
 ================================================================
-Mappers : For Every mapper one file will be created i.e (part-m-00000 files) ,default mappers are 4.
+Mappers : For Every mapper one file will be created 
+i.e (part-m-00000 files) ,default mappers are 4.
 manually set number of mappers  --num-mappers (or) -m
 
 ==================================
 4. controlling parallelism in sqoop:
 ==================================
-sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
---table orders \
---where 'order_id<100' \
---fields-terminated by ',' \
---target-dir 'user/data/orders' \
---delete-target-dir \
---num-mappers 2 ;
-  (or)
--m 2;
 
+sqoop import \
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order \
+--target-dir '/user/coludera/home/'
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' \
+--num-mappers 5 ;
+or 
+- m 5 ;
 
 =====================================================
 5. import my sql table specific column data to hdfs :
 =====================================================
+
 sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
---table orders \
---columns 'order_id,order_date' \
---fields-terminated by ',' \
---target-dir 'user/data/orders';
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order \
+--columns 'order_id','order_date' \
+--target-dir '/user/cloudera/home/' \
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' ;
 
 =====================================================
 6.overwrite existing data while sqoop import:
 =====================================================
 
 sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
---table orders \
---fields-terminated by ',' \
---target-dir 'user/data/orders' \
---delete-target-dir ;
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order \
+--target-dir '/user/cloudera/home/' \
+--delete-target-dir \
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' ;
 
 =====================================================
 7.data append while sqoop import:
 =====================================================
 
 sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
---table orders \
---fields-terminated by ',' \
---target-dir 'user/data/orders' \
---append ;
-
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order \
+--target-dir '/user/cloudera/home/' \
+--append \
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' ;
 
 ===================================================
 8.import mysql table (No primary key) data to hdfs:
 ===================================================
 
 sqoop import \
---connect jdbc:mysql://localhost/retail_db \
---username root \
---password root \
---table orders_noPk \
---fields-terminated by ',' \
---target-dir 'user/data/orders' \
---split-by order_id ;
-
-
-
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order_nopk \
+--target-dir '/user/cloudera/home/' \
+--split-by 'order_id' \
+--fields-terminated-by ',' \
+--lines-terminated-by '\n' ;

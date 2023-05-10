@@ -60,7 +60,7 @@ sqoop import \
 --username root \
 --password root \
 --table orders \
---compress \
+--compression-codec \
 --target-dir 'user/data/orders_compress/' ;
 
 

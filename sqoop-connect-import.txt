@@ -3,9 +3,12 @@
 
 
 import 
---connect 
-jdbc:mysql://localhost/retail_db
---username
-root
---password
-root
+--connect jdbc:mysql://localhost/retail_db
+--username root
+--password root
+
+
+import 
+--connect jdbc:oracle:thin:43.241.64.54
+--username root
+--password root
