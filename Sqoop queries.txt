@@ -1,5 +1,6 @@
 
-write a optimized sqoop job for import 1 million records from a database to hdfs
+#1.write a optimized sqoop job for import 1 million records from a database to hdfs:
+#===================================================================================
 
 sqoop import \
 --option-file '' \
@@ -8,9 +9,10 @@ sqoop import \
 --delete-target-dir  \
 --num-mapper 10 \
 --fetch-size 10000 \
---compression-codec \
+--compression-codec Gzip\
 --as-textfile \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' \
+
 
 
