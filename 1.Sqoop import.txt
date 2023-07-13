@@ -15,18 +15,22 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n';
 
+
+
 ==============================================================
-2.To Import data from my sql table data to hdfs specific path :
+2.To Import data from my sql table data to hdfs  specific path :
 ===============================================================
 
 sqoop import \
---connect jdbc:mysql://server/retail_db \
+--connect jdbc:mysql://localhost/retail_db \
 --username cloudera \
 --password cloudera \
 --table order \
 --target-dir '/user/coludera/home/'
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
+
+
 
 ============================================================
 3. import my sql table filtered data to hdfs specific path :
@@ -42,14 +46,19 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
 
-================================================================
-Mappers : For Every mapper one file will be created 
-i.e (part-m-00000 files) ,default mappers are 4.
-manually set number of mappers  --num-mappers (or) -m
 
-==================================
+
+===================================================
+Mappers : For Every mapper one file will be created 
+i.e (part-m-00000 files)
+
+default mappers are 4.
+
+manually set number of mappers 
+--num-mappers (or) -m
+===================================
 4. controlling parallelism in sqoop:
-==================================
+===================================
 
 sqoop import \
 --connect jdbc:mysql://server/retail_db \
@@ -77,6 +86,8 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
 
+
+
 =====================================================
 6.overwrite existing data while sqoop import:
 =====================================================
@@ -91,8 +102,11 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
 
+
+
+
 =====================================================
-7.data append while sqoop import:
+7.append new data while sqoop import:
 =====================================================
 
 sqoop import \
@@ -104,6 +118,7 @@ sqoop import \
 --append \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
+
 
 ===================================================
 8.import mysql table (No primary key) data to hdfs:
@@ -118,3 +133,16 @@ sqoop import \
 --split-by 'order_id' \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
+
+or 
+
+
+sqoop import \
+--connect jdbc:mysql://server/retail_db \
+--username cloudera \
+--password cloudera \
+--table order \
+--target-dir '' \
+--fields-terminated-by ',' \
+--lines-terminated-by '\n'  \
+--m 1;

@@ -1,8 +1,4 @@
 
-sqoop
---options-file D:/Big_Data/Sqoop/code/sqoop-connect 
-
-
 1.importing all tables from RDBMS to hadoop:
 =========================================
 
@@ -12,6 +8,7 @@ sqoop import-all-table \
 --password root \
 --warhouse-dir 'user/data/sq_tables/' \
 --autoreset-to-one-mapper ;
+
 
 
 2.Exclude tables from RDBMS to sqoop:
@@ -26,8 +23,9 @@ sqoop import-all-table \
 
 Note:
 -----
-autoreset-to-one-mapper : it set to one mapper when any table had no primary key
-u can't use split by
+when we are importing all tables ,for any one of table has no primary key then we need to use --autoreset-to-one-mapper,can't use --split-by
+
+
 
 3.import data from rdbms table to hive table:
 ===========================================
@@ -40,13 +38,15 @@ sqoop
 --hive-table hive_sq_orders \
 -- m 1 ;
 
+
+
 3.sqoop incremental/delta loads (lastmodified,append):
-================================================
+======================================================
 
 load historical data:(only once)
 ---------------------
 
-sqoop import \
+sqoop
 --option-file D:/Big_Data/Sqoop/code/sqoop-connect \
 --table order \
 --target-dir /user/coludera/retail/ \
@@ -68,3 +68,4 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by ',' \
 -m 3 ;
+
