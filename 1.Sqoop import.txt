@@ -72,6 +72,8 @@ sqoop import \
 or 
 - m 5 ;
 
+
+
 =====================================================
 5. import my sql table specific column data to hdfs :
 =====================================================
@@ -88,9 +90,9 @@ sqoop import \
 
 
 
-=====================================================
+=============================================
 6.overwrite existing data while sqoop import:
-=====================================================
+=============================================
 
 sqoop import \
 --connect jdbc:mysql://server/retail_db \
@@ -104,10 +106,9 @@ sqoop import \
 
 
 
-
-=====================================================
+=====================================
 7.append new data while sqoop import:
-=====================================================
+=====================================
 
 sqoop import \
 --connect jdbc:mysql://server/retail_db \
@@ -118,6 +119,8 @@ sqoop import \
 --append \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
+
+
 
 
 ===================================================
@@ -146,3 +149,4 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n'  \
 --m 1;
+

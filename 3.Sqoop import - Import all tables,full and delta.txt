@@ -1,6 +1,6 @@
 
 1.importing all tables from RDBMS to hadoop:
-=========================================
+============================================
 
 sqoop import-all-table \
 --connect jdbc:mysql://localhost/retail_db \
@@ -28,7 +28,7 @@ when we are importing all tables ,for any one of table has no primary key then w
 
 
 3.import data from rdbms table to hive table:
-===========================================
+=============================================
 
 sqoop 
 --options-file D:/Big_Data/Sqoop/code/sqoop-connect 
@@ -40,8 +40,8 @@ sqoop
 
 
 
-3.sqoop incremental/delta loads (lastmodified,append):
-======================================================
+3.sqoop incremental/delta loads (append,check column,last value):
+=================================================================
 
 load historical data:(only once)
 ---------------------
@@ -68,4 +68,5 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by ',' \
 -m 3 ;
+
 

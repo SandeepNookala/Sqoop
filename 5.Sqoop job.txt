@@ -4,7 +4,6 @@
 sqoop job --create sqoop_delta_job 
 
 
-
 2. list of sqoop job:
 ======================
 sqoop job --list
@@ -26,5 +25,4 @@ sqoop job --delete sqoop_delta_job
 4. show sqoop paramenters: 
 ==========================
 sqoop job --show sqoop_delta_job
-
 

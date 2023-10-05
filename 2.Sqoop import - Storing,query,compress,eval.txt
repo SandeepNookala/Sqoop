@@ -15,7 +15,7 @@ sqoop import \
 
 
 2. storing sqoop output data in sequence file format:
-================================================
+=====================================================
 these are binary format that store individual records in custom record-specific data type.
 
 sqoop import \
@@ -29,7 +29,7 @@ sqoop import \
 
 
 3. storing sqoop output data in avro data file format:
-================================================
+=====================================================
 
 sqoop import \
 --connect jdbc:mysql://localhost/retail_db \
@@ -54,6 +54,7 @@ sqoop import \
 --delete-target-dir ;
 
 
+
 5.sqoop output data compression:
 ================================
 
@@ -76,6 +77,7 @@ sqoop import \
 --password root \
 --target-dir 'user/data/orders_compress/' \
 --query 'select * from orders where order_status = processing' ;
+
 
 
 7. Sqoop ‘eval’ tool:
