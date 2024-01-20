@@ -12,7 +12,6 @@ sqoop export
 
 
 
-
 2.export hdfs specific column data to mysql table:
 ==================================================
 
@@ -27,7 +26,7 @@ sqoop export
 
 
 
-3.delta load /incremental load:
+3.delta load /incremental load:(update-key,update-mode)
 ===============================
 
 sqoop export
@@ -39,5 +38,4 @@ sqoop export
 --update-mode allowinsert \
 --table order_export \
 --input-fields-terminated by ',' ;
-
 

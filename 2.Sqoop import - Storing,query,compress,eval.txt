@@ -49,9 +49,8 @@ sqoop import \
 --username root \
 --password root \
 --table orders \
---as-parquetfile \
 --target-dir 'user/data/orders_parquet/' \
---delete-target-dir ;
+--as-parquetfile ;
 
 
 
@@ -83,7 +82,6 @@ sqoop import \
 7. Sqoop ‘eval’ tool:
 =====================
 It allows users to execute sql queries against database and preview the result in the console
-
 
 sqoop eval \
 --connect jdbc:mysql://localhost/retail_db \

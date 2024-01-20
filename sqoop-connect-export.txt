@@ -1,10 +1,4 @@
-
-
-
 export
---connect 
-jdbs:mysql://localhost/sqoop_export 
---username 
-root 
---password 
-root 
+--connect jdbs:mysql://localhost/sqoop_export  \
+--username root \
+--password root \

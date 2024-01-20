@@ -7,6 +7,7 @@ is a tool designed for efficiently trasfering bulk data between hadoop and RDBMS
 1.To Import data from My sql table data to default hdfs path :
 ==============================================================
 
+
 sqoop import \
 --connect jdbc:mysql://localhost/retail_db \
 --username cloudera \
@@ -56,6 +57,9 @@ default mappers are 4.
 
 manually set number of mappers 
 --num-mappers (or) -m
+
+
+
 ===================================
 4. controlling parallelism in sqoop:
 ===================================
@@ -99,8 +103,8 @@ sqoop import \
 --username cloudera \
 --password cloudera \
 --table order \
---target-dir '/user/cloudera/home/' \
 --delete-target-dir \
+--target-dir '/user/cloudera/home/' \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
 
@@ -119,7 +123,6 @@ sqoop import \
 --append \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n' ;
-
 
 
 
@@ -148,5 +151,4 @@ sqoop import \
 --target-dir '' \
 --fields-terminated-by ',' \
 --lines-terminated-by '\n'  \
---m 1;
-
+- m 1;

@@ -68,5 +68,3 @@ sqoop import \
 --fields-terminated-by ',' \
 --lines-terminated-by ',' \
 -m 3 ;
-
-
